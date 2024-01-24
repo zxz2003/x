@@ -1,0 +1,40 @@
+@model User
+
+<h1> SignUp page</h1>
+
+@Html.BeginForm("Login", "Home", FormMethod.Post)
+{
+@Html.AntiForgeryToken()
+@Html.ValidationSummary("",new{})
+<div class="form-group">
+	@Html.LabelFor(m=>m.Name , new{@class="control-label col-md-2"})
+	<div class="col-md-10">
+		@Html.TextBoxFor(m=>m.Name , new{@class="form-control"})
+		@Html.ValidationMessageFor(m=>m.Name ,"", new{@class="text-danger" , type="name"})
+	</div>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m=>m.Email , new{@class="control-label col-md-2"})
+	<div class="col-md-10">
+		@Html.TextBoxFor(m=>m.Email , new{@class="form-control"})
+		@Html.ValidationMessageFor(m=>m.Email ,"", new{@class="text-danger" , type="email"})
+	</div>
+</div>
+
+<div class="form-group">
+	@Html.LabelFor(m=>m.Password , new{@class="control-label col-md-2"})
+	<div class="col-md-10">
+		@Html.TextBoxFor(m=>m.Password , new{@class="form-control" , type="password"})
+		@Html.ValidationMessageFor(m=>m.Password ,"", new{@class="text-danger"})
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="col-md-10">
+		<input type="submit" value="login" class="btn btn-primary" />
+		<a class="btn btn-secondary" asp-action="LogIn">Log In</a>
+	</div>
+</div>
+
+}
