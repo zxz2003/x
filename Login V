@@ -25,6 +25,7 @@
 <div class="form-group">
 	<div class="col-md-10">
 		<input type="submit" value="login" class="btn btn-primary"/>
+		<a class="btn btn-secondary" asp-action="SignUp">Sign up</a>
 	</div>
 </div>
 
