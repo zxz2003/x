@@ -4,6 +4,7 @@
 
 @Html.BeginForm("Login", "Home", FormMethod.Post)
 {
+	@Html.AntiForgeryToken()
 	@Html.ValidationSummary("",new{})
 	<div class="form-group">
 		@Html.LabelFor(m=>m.Email , new{@class="control-label col-md-2"})
