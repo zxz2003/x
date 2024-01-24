@@ -1,0 +1,25 @@
+public IActionResult Login()
+{
+	return View();
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public IActionResult Login(loginModel user)
+{
+	if(ModelState.IsValid)
+	{
+		var existinguser = _users.FirstOrDefault(u=>u.Email.ToLower() == user.Email.ToLower();
+		if(existinguser != null)
+		{
+			if (existinguser.Password == user.Password)
+			{
+				return RedirectToAction("Index");
+			}
+
+		}
+		ModelState.AddModelError("", "Invalid credentials");
+		return View();
+	}
+	return View();
+}
