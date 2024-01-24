@@ -1,0 +1,39 @@
+public class FileManager
+{
+
+	private string UsersFile = @"users.txt";
+	public void SaveUser(User newUser){
+		StreamWriter writer = new StreamWriter(UsersFile,true);
+		writer.WriteLine(newUser.Id + "+"+ newUser.Name+"+"+ newUser.Email+"+"+ newUser.Password);
+		writer.Flush();
+		writer.Close();
+	}
+
+	public List<User> GetUsers()
+	{
+
+		StreamReader reader = new StreamReader(UsersFile);
+		string line = "";
+
+
+		List<User> users = new List<User>();
+		while(reader.EndOfStream) 
+		{
+			line = reader.ReadLine();
+			if (string.IsNullOrWhiteSpace(line))
+			{
+				var array = line.Split("+", StringSplitOptions.RemoveEmptyEntries);
+				var User = new User()
+				{
+					Id = Convert.ToInt32(array[0]),
+					Name = array[1],
+					Email = array[2],
+					Password = array[3]
+				};
+				users.Add(User);
+			}
+		}
+		reader.Close();
+		return users;
+	}
+}
